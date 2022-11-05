@@ -14,7 +14,7 @@
 - [Data Analyst dan Machine Learning](#data-analyst-dan-machine-learning)
   - [Kesimpulan Data Analyst dan Machine Learning](#kesimpulan-data-analyst-dan-machine-learning)
   - [Saran Data Analyst dan Machine Learning](#saran-data-analyst-dan-machine-learning)
-- [Others Data Visualization Report](#others-data-visualization-report)
+- [OTHERS PROJECT](#others-project)
 
 ### **Problem Statement**
 
@@ -83,12 +83,11 @@ Kemudian, kami akan mengembangkan model klasifikasi yang akan membantu perusahaa
 7. Karyawan yang dapat promosi paling banyak yang tidak pernah mendapatkan penghargaan sebanyak 8% dari pada karyawan yang mendapatkan penghargaan hanya 1%.
 8. Karyawan yang memiliki skor training `exellent` paling banyak mendapatkan promosi dari keseluruhan karyawan yang di promosikan.
 9. Dengan menggunakan model Machine Learning kita dapat melakukan penghematan waktu dengan menyaring terlebih dahulu pegawai yang akan direkomendasikan untuk dipromosi. hal ini dapat dilihat dari classification report dengan nilai precision sebesar 0.90 pada class positive. yang berarti model memiliki ketepatan sebesar 81% dalam menyaring pegawai yang sebenarnya akan dipromosi. Dengan nilai recall sebesar 0.99 pada kelas negative, artinya model dapat dapat memprediksi hingga 99% untuk pegawai yang tidak akan dipromosi dari keseluruhan pegawai yang tebakannnya benar, dengan ketepatan (precision) prediksinya sebesar 0.94. Ini berarti model dapat menebak pegawai mana yang tidak untuk dipromosikan dengan ketepatan mencapai 94%. Artinya dari 100 pegawai yang tidak dipromosikan, model dapat menebak 94 pegawai. Dengan nilai recall pada kelas positive yang hanya sebesar 0.36. Model hanya dapat menebak sebesar 36% dari keseluruhan pegawai yang benar tebakannya. Ini mengakibatkan konsekuensi semakin sedikitnya pegawai potensial yang akan direkomendasikan.
-
 10. Tanpa menggunakan model, dengan asumsi pengecekan dokumen seorang pegawai berkisar 5 menit. Maka apabila terdapat 1000 pegawai yang akan diperiksa secara keseluruhan dengan cara manual, dibutuhkan waktu selama 5000 menit. Sedangkan dengan menggunakan model, kita dapat menyaring dari 1000 pegawai. Kita akan mendapatkan, ketepatan rata-rata hingga 92% (macro avg precision) dalam menyaring pegawai. Artinya model dapat menghemat waktu hingga 92% (4.600 menit) dari total keseluruhan. Dengan menggunakan model, setidaknya model dapat mengklasifikasikan hingga 36% (recall positive) pegawai akan rekomendasikan untuk promosi dari total pegawai yang telah diprediksi secara benar. 
 
 ## **Saran Data Analyst dan Machine Learning**
 
-1. - **Proses Identifikasi** : Proses identifikasi untuk karyawan yang akan di lakukan training untuk promosi jabatan dapat dilakukan pada semua department yang ada di perusahaan dengan persyaratan rating KPI Karyawan masuk dalam skor 3 / Good.
+- **Proses Identifikasi** : Proses identifikasi untuk karyawan yang akan di lakukan training untuk promosi jabatan dapat dilakukan pada semua department yang ada di perusahaan dengan persyaratan rating KPI Karyawan masuk dalam skor 3 / Good.
 -  **Proses Latihan dan Evaluasi** : Saat proses training perusahaan dapat memfokuskan / menyaring karyawan yang mendapatkan skor training di atas 60 atau masuk dalam kategori excellent.
 -  **Prediksi Karyawan DiPromosi** : Setelah karyawan dilakukan identifikasi dan latihan serta evaluasi terhadap skor karyawan maka Perusahaan dapat menggunakan mesin learning untuk melakukan prediksi karyawan mana saja yang akan di promosikan dan karyawan yang belum bisa di promosikan. Pada hal ini yang menjadi fokus penilaian dan pertimbangan pada saat menggunakan mechine learning ada pada Skor `KPI Karyawan` **,** `Karyawan dipromosikan sesuai dengan Departement bekerja` **,** `Pendidikan minimal sarjana / bachelor` dan `Skor Training`..
 
