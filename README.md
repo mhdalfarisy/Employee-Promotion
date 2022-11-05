@@ -18,120 +18,79 @@
 
 ### **Problem Statement**
 
-Berhentinya pelanggan menggunakan layanan jasa dari perusahaan merupakan metrik penting untuk melakukan evaluasi bisnis. Karena mempertahankan pelanggan yang pergi jauh lebih hemat biaya dari pada mencari pelanggan baru. Hal ini di pengaruhi dari banyak faktor salah satunya pelanggan memilih penyedia layanan lain dan persaingan antara perusahaan setiap tahunnya mencapai 15-25% yang kompetitive untuk mendapatkan pelanggan.
+Sebuah perusahaan level multinasional yang memiliki jumlah pegawai dalam skala besar, ingin melebarkan usaha bisnisnya dengan membuka cabang di beberapa lokasi yang baru. Oleh karena itu, perusahaan yang melihat pegawainya sebagai aset (*talent*) ingin melakukan proses promosi kepada seluruh pegawainya yang nantinya akan menduduki jabatan satu tingkat di atas jabatan sebelumnya sesuai dengan departmennya masing-masing. Proses penentuan promosi jabatan akan diumumkan setelah pegawai melewati periode pelatihan dan evaluasi. Program pelatihan dan evaluasi ini bertujuan untuk pengembangan kemampuan pegawai. Dan apabila pegawai pada akhirnya dipromosikan, budaya perusahaan tetap terjaga di tempat yang baru.
 
-Untuk mengurangi perginya pelanggan dari perusahaan, maka perusahaan perlu melakukan pendekatan pada pelanggan untuk mencengahnya pergi dari perusahaan. Hal ini dapat dilakukan dengan menerapkan machine learning pada bisnis perusahaan dengan menemukan klasifikasi total pelanggan yang seharunya mendapatkan pendekatan dari perusahaan (Dapat berupa promo atau campaign), hal ini diperlukan karena jika perusahaan memberikan pada semua pelanggan untuk campaign dan promonya maka akan memerlukan biaya yang besar sehingga ini akan semakin beresiko pada perusahaan untuk segi beban di laporan laba rugi.
+Proses pemilihan kandidat pegawai yang akan dipromosi:
+1. Perusahaan mengidentifikasi data pegawai berdasarkan rekomendasi dan kinerja.
+2. Pegawai yang terpilih akan menjalani program pelatihan dan evaluasi secara terpisah untuk masing-masing departmennya. Program ini berlandaskan pada kemampuan yang dibutuhkan dari setiap departemen.
+3. Di akhir program, berdasarkan berbagai faktor seperti kinerja pelatihan, dll., seorang pegawai akan menjadi kandidat untuk dipromosikan.
 
 ### **Objectives**
 
-Berdasarkan pendahuluan dan rumusan masalah, proyek ini bertujuan untuk mengembangkan model pembelajaran mesin learning yang nanti dapat digunakan perusahaan untuk mengklasifikasi pelanggan mana yang akan pergi dan pelanggan mana yang tidak pergi.
-
-Hal ini akan berguna untuk perusahaan ketika mempertahankan pelanggan yang sudah ada dengan memberikan manfaat promosi dengan target yang lebih jelas dan hal ini akan mengurangi pengeluaran perusahaan dibandingkan ketika perusahaan memberikan promosi kepada semua pelanggan agar mereka tidak pergi atau memberikan kepada customer baru dan dampak lainnya ketika promosi difokuskan pada pelanggan sudah ada diperusahaan sehingga akan menghemat biaya promosi dan dapat menambah pendapatan dari pelanggan yang tidak pergi ini.
+Maka berdasarkan permasalahan tersebut, perusahaan ingin memiliki kemampuan untuk memprediksi kemungkinan seorang pegawai yang akan dipromosikan pada perusahaan tersebut atau tidak, sehingga perusahaan dapat memfokuskan untuk mempersiapkan test assesment untuk kandidat pegawai yang direkomendasi oleh model dan proses promosi pegawai yang akan diumumkan pada tahap akhir. Limitasi model yang akan digunakan untuk memprediksi promosi pegawai (di bawah C-Level).
+Dan juga, perusahaan ingin mengetahui faktor apa yang membuat seorang pegawai dipromosi atau tidak, sehingga perusahaan dapat membuat rencana/program yang lebih baik dalam mempromosikan pegawai potensial.
 
 ### **Metric**
 
-- 0 = Non-Churn (Negative)
-- 1 = Churn (Positive)
+0 : Tidak Promosi Jabatan
 
-Error tipe 1: False Positive
+1 : Promosi Jabatan
 
-Kesalahan ini akan menambah beban perusahaan dengan memberikan keuntungan dan promosi kepada pelanggan non-churn dan mengabaikan pelanggan yang berpindah.
+Type 1 error : False Positive  
+Konsekuensi : Sia-sianya biaya, waktu dan tenaga test assesment dikarenakan karyawan yang mendapatkan promosi bukan dari karyawan yang sangat berpotensi.
 
-Error Tipe 2: False Negative
+Type 2 error : False Negative  
+Konsekuensi: Karyawan yang berpotensi di prediksi tidak mendapatkan promosi.
 
-Kesalahan ini akan membuat perusahaan mengabaikan pelanggan mereka yang berpindah tanpa memberi mereka manfaat/promosi untuk mempertahankan retensi mereka.
+Berdasarkan konsekuensinya, maka sebisa mungkin yang akan kita lakukan adalah membuat model yang efisien yang dapat mengurangi waktu dan tenaga. Namun juga membuat model tanpa membuat hilangnya pegawai potensial yang akan memegang tanggung jawab lebih besar dari sebelumnya. Maka dari itu, nilai recall dan precision berdasarkan kelas positivenya perlu untuk diseimbangkan. Sehingga metric utama yang akan digunakan adalah `f1-score`.
 
 ### **Analytical Approach**
 
-- Pendekatan analisa ini dengan cara melakukan pembagian variabel pada saat dilakukan Exploratory Data Analyst dan Visualisasi Data:
-  - Melakukan Exploratory Data Analyst terhadap seluruh variabel yang ada untuk mengetahui karakteristik pelanggan yang berhenti berlangganan (Jupyter NoteBook).
-  - Melakukan Visualisasi data dari setiap analisa untuk mendapatkan gambaran secara visual dari hasil Exploratory Data Analyst (Tableau).
-  - Untuk model pembelajaran mesin, kami ingin memprediksi pelanggan yang memiliki risiko churn yang tinggi. Dalam hal ini, kita akan menggunakan Model Klasifikasi untuk memprediksi Churn Customer dan disini difokuskan rekomendasi campaign pada False Positif.
+Kami akan menggunakan pendekatan berbasis data (*data-driven*) untuk memprediksi apakah pegawai akan direkomendasi untuk promosi atau tidak. Prediksi kami berdasarkan pada informasi terkait demografi, pendidikan terakhir, kinerja, dan fitur lainnya yang ada pada pegawai.
+
+Selanjutnya, kami akan melakukan analisis data untuk menemukan pola yang membedakan pegawai yang akan dipromosikan dan tidak dipromosikan jabatannya.
+
+Kemudian, kami akan mengembangkan model klasifikasi yang akan membantu perusahaan untuk dapat memprediksi probabilitas seorang pegawai yang akan dipromosikan di perusahaan tersebut atau tidak.
 
 ### **Definisi Kolom**
 | **Nama Kolom** |**Keterangan Kolom** |
 | --- | --- |
 |CustomerID| ID unik yang mengidentifikasi setiap pelanggan|
-|gender | Jenis kelamin pelanggan|
-|Senior Citizen | Menunjukkan jika pelanggan berusia 65 tahun ke atas|
-|Partner | Menunjukkan jika pelanggan memiliki akun berbagi|
-|Dependents | Menunjukkan jika pelanggan tinggal dengan tanggungan. Tanggungan bisa anak-anak, orang tua, kakek-nenek, dll.|
-|Tenure | Berapa lama pelanggan telah menjadi pelanggan|
-|Phone Service | Menunjukkan jika pelanggan berlangganan layanan telepon rumah dengan perusahaan|
-|MultipleLines | Menunjukkan jika pelanggan berlangganan beberapa saluran telepon dengan perusahaan|
-|Internet Service | Menunjukkan apakah pelanggan berlangganan layanan internet|
-|Online Security | Menunjukkan jika pelanggan berlangganan layanan keamanan online tambahan|
-|Online Backup | Menunjukkan apakah pelanggan berlangganan layanan pencadangan online tambahan|
-|DeviceProtection | Menunjukkan jika pelanggan berlangganan perlindungan perangkat tambahan untuk peralatan Internet mereka|
-|Tech Support | Menunjukkan apakah pelanggan berlangganan layanan dukungan teknis|
-|Streaming TV | Menunjukkan jika pelanggan menggunakan layanan Internet mereka untuk melakukan streaming program televisi dari penyedia pihak ketiga|
-|Streaming Film | Menunjukkan jika pelanggan menggunakan layanan Internet mereka untuk melakukan streaming film dari penyedia pihak ketiga|
-|Kontrak | Menunjukkan jenis kontrak pelanggan saat ini|
-|Paperless Billing | Menunjukkan jika pelanggan telah memilih paperless billing|
-|Payment Method | Menunjukkan bagaimana pelanggan membayar tagihan mereka|
-|Monthly Charges | Menunjukkan total biaya bulanan pelanggan saat ini untuk semua layanan mereka dari perusahaan|
-|Total Charges | Menunjukkan total biaya pelanggan|
-|Churn | Menunjukkan apakah pelanggan memiliki TV streaming atau tidak (Ya, Tidak, Tidak ada layanan internet)|
+|Employee_id | Unique ID for employee|
+|Department | Department of employee|
+|Region | Regio R of employment (unordered)|
+|Education | Edu cationELevel|
+|Gender | Gender of Employee|
+|Recruitment_channel | Channel of recruitment for employee
+|No_ of_ trainings | No of other trainings completed in previous year on soft skills, technical skills etc|
+|Age | Age of Employee
+|Previous_ year_ rating | Employee Rating for the previous year|
+|Length_ of_ service | Length of service in years|
+|Awards_ won? | If awards won during previous year then 1 else 0|
+|Avg_ training_ score | Average score in current training evaluations|
+|Is_promoted|(Target) Recommended for promotion|
 
 ## Data Analyst dan Machine Learning
 
 ### **Kesimpulan Data Analyst dan Machine Learning**
 
-1. Pelanggan gender male memiliki persentase berhenti paling banyak 37,3%
-2. Pelanggan kurang dari 60 tahun memiliki persentase tertinggi berhenti menggunakan layanan jasa perusahaan
-3. Pelanggan yang tidak menggunakan akun pengguna bersama paling banyak berhenti menggunakan layanan perusahaan
-4. Pelanggan yang tidak memiliki tanggungan memiliki persentase tertinggi untuk berhenti berlangganan sebanyak 21,9%
-5. Pelanggan yang berhenti kurang dari 10 bulan menggunakan jasa layanan perusahaan
-6. Jasa layanan telepon rumah memiliki tingkat pelanggan berhenti tertinggi 24,1%
-7. Layanan telepon lebih dari 1 dengan hanya 1 pengguna sama sama memiliki tingkat pelanggan berhenti 12,1%
-8. Jaringan fiber optik memiliki persentase tertinggi pelanggan berhenti 18,4%
-9. Pelanggan berhenti paling banyak yang tidak menggunakan keamanan jaringan tambahan
-10. Pelanggan yang tidak menggunakan layanan backup data jasa online paling banyak berhenti 17,5%
-11. Dari 43,9% pelanggan tidak menggunakan keamanaan perangkat, ada 17,2% pelanggan berhenti menggunakan layanan perusahaan
-12.	Banyak pelangan yang berhenti menggunakan layanan perusahaan dari pelanggan yang tidak menggunakan layanan bantuan teknis
-13.	Pelanggan yang berhenti menggunakan layanan jasa perusahaan berasal dari pelanggan yang tidak menggunakan layanan internet untuk straming tv sebanyak 13.4%
-14.	Pelanggan yang menggunakan jaringan internet banyak berhenti berlanggan dari kategori yang tidak menggunakan jaringan tersebut untuk straming film dari pihak ketiga sebanyak 13.3%
-15.	Kontrak pelanggan dengan perusahaan paling banyak month to month dan ini paling banyak pelanggan yang berhenti 23.5%
-16.	Pelanggan yang mendapatkan kertas bukti pembayaran tagihan lebih banyak berhenti berlangganan sebanyak 19.9% 
-17.	Pelaggan paling banyak berhenti berlangganan dari metode pembayaran elektronik check 15.2%
-18.	Pelanggan yang paling banyak berhenti dari total pembayaran kurang dari 2.000 USD sedangkan pelanggan yang memiliki tagihan di atas 2.000 USD banyak tetap menggunakan layanan perusahaan.
-19. Model XGBoost Regressor memiliki skor tertinggi yaitu 56% dan dilakukan tuning skor meningkat menjadi 63%.
-20. Pelanggan yang berhenti berlangganan diprediksi 373 orang, setelah dilakukan tuning pada model Model XGBoost Regressor dengan data over sampling diperoleh prediksi pelanggan yang berhenti berlangganan 425 orang.  
+1. 1. Total karyawan yang akan di promosikan berjumlah 4.232 atau setara dengan 9% dari total keseluruhan karyawan.
+2. Karyawan paling banyak berasal dari departement sales dan marketing serta dari departement ini banyak karyawan yang mendapatkan promosi.
+3. Banyak karyawan yang dipromosikan dari rating terbaik yaitu rating 5 yang paling banyak berasal dari departement Operations dan department Sales & marketing.
+4. Karyawan yang mendapatkan promosi berasal dari gelar sarjana / Bachelor's
+5. Paling banyak karyawan laki-laki yang mendapatkan promosi sebanyak 6% dari total keseluruhan karyawan yang di promosi dan yang tidak dapat promosi.
+6. Umur paling banyak karyawan yang mendapatkan promosi berasal dari umur 29 tahun sampai dengan 34 tahun.
+7. Karyawan yang dapat promosi paling banyak yang tidak pernah mendapatkan penghargaan sebanyak 8% dari pada karyawan yang mendapatkan penghargaan hanya 1%.
+8. Karyawan yang memiliki skor training `exellent` paling banyak mendapatkan promosi dari keseluruhan karyawan yang di promosikan.
+9. Dengan menggunakan model Machine Learning kita dapat melakukan penghematan waktu dengan menyaring terlebih dahulu pegawai yang akan direkomendasikan untuk dipromosi. hal ini dapat dilihat dari classification report dengan nilai precision sebesar 0.90 pada class positive. yang berarti model memiliki ketepatan sebesar 81% dalam menyaring pegawai yang sebenarnya akan dipromosi. Dengan nilai recall sebesar 0.99 pada kelas negative, artinya model dapat dapat memprediksi hingga 99% untuk pegawai yang tidak akan dipromosi dari keseluruhan pegawai yang tebakannnya benar, dengan ketepatan (precision) prediksinya sebesar 0.94. Ini berarti model dapat menebak pegawai mana yang tidak untuk dipromosikan dengan ketepatan mencapai 94%. Artinya dari 100 pegawai yang tidak dipromosikan, model dapat menebak 94 pegawai. Dengan nilai recall pada kelas positive yang hanya sebesar 0.36. Model hanya dapat menebak sebesar 36% dari keseluruhan pegawai yang benar tebakannya. Ini mengakibatkan konsekuensi semakin sedikitnya pegawai potensial yang akan direkomendasikan.
+
+10. Tanpa menggunakan model, dengan asumsi pengecekan dokumen seorang pegawai berkisar 5 menit. Maka apabila terdapat 1000 pegawai yang akan diperiksa secara keseluruhan dengan cara manual, dibutuhkan waktu selama 5000 menit. Sedangkan dengan menggunakan model, kita dapat menyaring dari 1000 pegawai. Kita akan mendapatkan, ketepatan rata-rata hingga 92% (macro avg precision) dalam menyaring pegawai. Artinya model dapat menghemat waktu hingga 92% (4.600 menit) dari total keseluruhan. Dengan menggunakan model, setidaknya model dapat mengklasifikasikan hingga 36% (recall positive) pegawai akan rekomendasikan untuk promosi dari total pegawai yang telah diprediksi secara benar. 
 
 ## **Saran Data Analyst dan Machine Learning**
 
-1. Fokuskan promosi pada pelangan yang bergender male untuk usia kurang dari 60 tahun dan pelanggan yang menggunakan layanan telekomunikasi untuk keperluan sendiri serta belum memiliki tanggungan dan promosi ini akan berdampak pada pelanggan hingga 12 bulan pertama setelah promosi dengan tujuan mereka akan bisa mereview hasil keuntungan dari promosi ini dan mempercepat perputaran keuangan perusahaan.
-2. :
-   - a. Produk yang difokuskan ada pada pelanggan yang masih menggunakan telephone rumah, pelanggan yang menggunakan jaringan internet fiber optic, pelanggan yang tidak menggunakan layanan keamanan jaringan, backup data online, bantuan teknis tambahan, keamanan perangkat yang digunakan, pelanggan yang tidak menggunakan layanan straming TV dan Movie dengan pihak ke tiga.
-   
-   - b. perusahaan dapat membuat paket layanan seperti :
-     - 1. Paket layanan telepon seluler + telephone rumah diskon 10% (Untuk pelanggan pengguna Handphone dan Telephone rumah)
-     - 2. Paket keamanan jaringan internet pada fiber optic diskon 10% (Untuk pelanggan yang menggunakan jaringan fiber optic dan pelanggan yang tidak menggunakan keamanan jaringan)
-     - 3. Paket keamanan jaringan Handphone + Keamanan perangkat diskon 10% (Untuk pelanggan yang menggunakan jaringan internet + Keamanan perangkat)
-     - 4. Paket backup data online + Bantuan teknis (Untuk pelanggan yang menginginkan keamanan datanya dapat terjaga dengan realtime)
-     - 5. Paket internet straming TV + Movie diskon 12% (Untuk pelanggan yang tidak menggunakan layanan straming TV dan Movie)
-     - 6. Diskon tambahan 5% jika mengambil lebih dari 1 paket layanan
-#
-3. Untuk pelanggan yang masih menggunakan kontrak perbulan, coba di tawarkan untuk menggunakan kontrak 1 tahun dan tawarkan keunggulan / keuntungan yang akan mereka dapatkan terutama dari biaya yang lebih hemat dan berikan diskon tambahan jika mereka menggunakan pembayaran dengan credit card karena credit card memiliki persentase pelanggan berhenti paling kecil atau tawarkan dengan pembayaran tranfer bank karena ini adalah persentase terkecil kedua pelanggan berhenti.
-
-4.  :
-   - Target pelangan yang mendapatkan promo sebelum menggunakan machine learning :
-   1. Total pelanggan 7.043
-   2. Pelanggan yang berhenti berlangganan 1.869
-   3. Pendapatan setiap pelanggan (Ex Paket Basic) 1.000 USD
-   4. Pendapatan setiap bulan = 7.043 x 1.000 USD = 7.043.000 USD
-   5. Biaya marketing per pelanggan yang sudah ada : 10 USD X 1.869 pelanggan = 18.690 USD
-   6. Total biaya marketing untuk pelanggan yang sudah ada : 10 USD X 7.043 pelanggan = 70.430 USD per pelanggan yang sudah ada untuk promosinya
-   7.  Jika total biaya promosi yang dikeluarkan sebanyak ini, dan bisa menghasilkan pelanggan dengan membeli paket basic ada 7.043.000 USD pendapatan yang perusahaan akan terima (1.000 USD paket basic X 7.043 pelanggan) dengan laba bersih 6.972.570 USD dengan total beban promosi yang dikeluarkan sekitar 1% dibulan berikutnya.
-#   
-   - Target pelangan yang mendapatkan promo menggunakan machine learning dengan memanfaatkan pelanggan yang sudah ada :
-   1. Total pelanggan 7.043
-   2. Pelanggan 425 yang diprediksi berhenti berlangganan (FP)
-   3. Pendapatan setiap pelanggan (Ex Paket Basic) 1.000 USD
-   4. Pendapatan setiap bulan = 7.043 x 1.000 USD = 7.043.000 USD
-   5. Biaya marketing per pelanggan yang sudah ada : 10 USD
-   6. Total biaya marketing untuk pelanggan yang sudah ada : 10 USD X 425 pelanggan = 4.250 USD
-   7. Jika total biaya promosi yang dikeluarkan 4.250 USD, dan bisa menghasilkan pelanggan dengan membeli paket basic ada 7.043.000 USD pendapatan yang perusahaan akan terima (1.000 USD paket basic X 7.043 pelanggan) dengan laba bersih 7.038.750 USD dengan total beban promosi yang dikeluarkan sekitar 0,06% dibulan berikutnya.
+1. - **Proses Identifikasi** : Proses identifikasi untuk karyawan yang akan di lakukan training untuk promosi jabatan dapat dilakukan pada semua department yang ada di perusahaan dengan persyaratan rating KPI Karyawan masuk dalam skor 3 / Good.
+-  **Proses Latihan dan Evaluasi** : Saat proses training perusahaan dapat memfokuskan / menyaring karyawan yang mendapatkan skor training di atas 60 atau masuk dalam kategori excellent.
+-  **Prediksi Karyawan DiPromosi** : Setelah karyawan dilakukan identifikasi dan latihan serta evaluasi terhadap skor karyawan maka Perusahaan dapat menggunakan mesin learning untuk melakukan prediksi karyawan mana saja yang akan di promosikan dan karyawan yang belum bisa di promosikan. Pada hal ini yang menjadi fokus penilaian dan pertimbangan pada saat menggunakan mechine learning ada pada Skor `KPI Karyawan` **,** `Karyawan dipromosikan sesuai dengan Departement bekerja` **,** `Pendidikan minimal sarjana / bachelor` dan `Skor Training`..
 
 <br>
 
